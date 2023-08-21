@@ -29,7 +29,22 @@ function Child(name, age) {
   return childThis;
 }
 
-const child = Child("Charlie", 5);
-console.log(child.age);
-console.log(child.gender);
+// const child = Child("Charlie", 5);
+// console.log(child.age);
+// console.log(child.gender);
 // console.log(child.Parent_hobby);
+
+//Q3 How can you use the call method to calculate the sum of two numbers using the calculate function?
+function calculate(a, b) {
+  return this.operation(a, b);
+}
+
+var operation = {
+  a: 5,
+  b: 5,
+  operation(a, b) {
+    console.log(a + b);
+  },
+};
+
+calculate.call(operation, ...Object.values(operation));
