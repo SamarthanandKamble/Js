@@ -16,18 +16,20 @@ const contact = {
 //Q2
 function Parent(name) {
   this.name = name;
-  this.gender = "Male";
+  this.gender = "Female";
   this.Parent_hobby = "Teaching";
 }
 
 function Child(name, age) {
-  Parent.call(this, name); // Here we are calling Parent fn with reference of Child. All properties of Praent would be accessible for child.
-  this.age = age;
-  this.gender = this.gender;
-  this.Parent_hobby = this.Parent_hobby;
+  var childThis = {};
+  Parent.call(childThis, name); // Here we are calling Parent fn with reference of Child. All properties of Praent would be accessible for child.
+  childThis.age = age;
+  childThis.gender = childThis.gender;
+  childThis.Parent_hobby = childThis.Parent_hobby;
+  return childThis;
 }
 
-const child = new Child("Charlie", 5);
-console.log(child.name);
+const child = Child("Charlie", 5);
+console.log(child.age);
 console.log(child.gender);
-console.log(child.Parent_hobby);
+// console.log(child.Parent_hobby);
