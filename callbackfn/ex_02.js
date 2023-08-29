@@ -31,9 +31,9 @@ function addTeaLeaves() {
 function addSugar() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve();
+      return reject("failed to add sugar");
       console.log("addSugar");
-    }, 5000);
+    }, 2000);
   });
 }
 function addMilk() {
@@ -67,9 +67,8 @@ boilTheWater()
   .then(() => addTeaLeaves())
   .then(() => addSugar())
   .then(() => addMilk())
-  .then(() => pourTheTea());
-
-
+  .then(() => pourTheTea())
+  .catch((err) => console.log(err));
 
 //Here is the async await way which works similar to promise.
 /*async function makeMilkTea() {
