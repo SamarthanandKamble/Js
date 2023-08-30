@@ -2,7 +2,7 @@
 function getUserData() {
   fetch(`https://randomuser.me/api/`)
     .then((data) => data.json())
-    .then((data) => console.log(data));
+    .then((data) => console.log(data))
 }
 
 getUserData();
