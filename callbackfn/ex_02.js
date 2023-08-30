@@ -31,9 +31,9 @@ function addTeaLeaves() {
 function addSugar() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      return reject("failed to add sugar");
+      resolve();
       console.log("addSugar");
-    }, 2000);
+    }, 5000);
   });
 }
 function addMilk() {
@@ -62,16 +62,16 @@ boilTheWater(function () {
 // this is know as PYRAMID OF DOOM. (nested functions)
 
 // Lets try to make this more simler and use Promises.
-
+/*
 boilTheWater()
   .then(() => addTeaLeaves())
   .then(() => addSugar())
   .then(() => addMilk())
-  .then(() => pourTheTea())
-  .catch((err) => console.log(err));
+  .then(() => pourTheTea()).catch((err)=>console.log(err))
+*/
 
 //Here is the async await way which works similar to promise.
-/*async function makeMilkTea() {
+async function makeMilkTea() {
   await boilTheWater();
   await addTeaLeaves();
   await addSugar();
@@ -80,6 +80,5 @@ boilTheWater()
 }
 
 makeMilkTea();
-*/
 
 console.log("Hey, we are making milk tea");
