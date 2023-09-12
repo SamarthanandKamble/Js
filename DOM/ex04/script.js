@@ -58,19 +58,21 @@ function createCardLayout() {
 
 createCardLayout(cityName);
 
-async function fetchWeatherData() {
+async function fetchWeatherData(city) {
   const URL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
   const apiKey = "ddfbc197ad5d17455d8123c1e9b68d20";
 
-  const response = await fetch(URL + cityName + `&appid=${apiKey}`);
+  const response = await fetch(URL + city + `&appid=${apiKey}`);
   const data = await response.json();
   console.log(data);
+  tempreture.textContent = data.main.temp + " °C";
+  cityName.textContent = data.name;
 }
 
 function getCityName() {
   serachBtn.addEventListener("click", function () {
-    cityName = searchBox.value;
-    fetchWeatherData(cityName);
+    let city = searchBox.value;
+    fetchWeatherData(city);
   });
 }
 getCityName();
