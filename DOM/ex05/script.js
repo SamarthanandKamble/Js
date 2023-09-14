@@ -64,4 +64,12 @@ function addTaskList(task) {
   ul.style.padding = "5px";
   taskDoneBtn.style.padding = "2px";
   taskEditBtn.style.padding = "2px";
+  taskDoneBtn.style.margin = "2px";
+  taskEditBtn.style.margin = "2px";
+
+  taskDoneBtn.addEventListener("click", () => markTodoDone(li));
+}
+
+function markTodoDone(item) {
+  item.style.textDecoration = "line-through";
 }
