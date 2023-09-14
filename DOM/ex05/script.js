@@ -38,6 +38,7 @@ function generateTask() {
   searchBtn.addEventListener("click", function () {
     tasks.push(inputBox.value);
     addTaskList(inputBox.value);
+    inputBox.value = "";
   });
 }
 generateTask();
