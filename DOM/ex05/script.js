@@ -25,6 +25,7 @@ function createContainer() {
   searchBtn.textContent = "Search";
   searchDiv.appendChild(searchBtn);
 
+  taskDiv.classList.add = "taskListDiv";
   taskDiv.style.border = "2px dotted red";
   taskDiv.style.height = "60vh";
   taskDiv.style.width = "100%";
@@ -43,14 +44,23 @@ generateTask();
 
 function addTaskList(task) {
   let li = document.createElement("li");
-  let taskDoneBtn = document.createElement("button");
-  taskDoneBtn.textContent = "done";
-  let taskEditBtn = document.createElement("button");
-  taskEditBtn.textContent = "edit";
-  li.classList.add("task");
   li.textContent = task;
+  li.classList.add("task");
+  let taskDoneBtn = document.createElement("button");
+  let taskEditBtn = document.createElement("button");
+  taskDoneBtn.classList.add = "taskListDoneBtn";
+  taskEditBtn.classList.add = "taskListEditBtn";
+  taskDoneBtn.textContent = "done";
+  taskEditBtn.textContent = "edit";
+  li.appendChild(taskEditBtn);
+  li.appendChild(taskDoneBtn);
   ul.appendChild(li);
   taskDiv.appendChild(ul);
-  taskDiv.appendChild(taskDoneBtn);
-  taskDiv.appendChild(taskEditBtn);
+
+  ul.style.width = "100%";
+  li.style.textAlign = "start";
+  li.style.padding = "5px";
+  ul.style.padding = "5px";
+  taskDoneBtn.style.padding = "2px";
+  taskEditBtn.style.padding = "2px";
 }
