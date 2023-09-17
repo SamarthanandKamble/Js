@@ -44,37 +44,41 @@ function generateTask() {
 generateTask();
 
 function addTaskList(task) {
-  let li = document.createElement("li");
-  li.textContent = task;
-  li.classList.add("task");
-  let taskDoneBtn = document.createElement("button");
-  let taskEditBtn = document.createElement("button");
-  taskDoneBtn.classList.add("taskListDoneBtn");
-  taskEditBtn.classList.add("taskListEditBtn");
-  taskDoneBtn.textContent = "Done";
-  taskEditBtn.textContent = "Edit";
-  let taskListDiv = document.createElement("div");
-  taskListDiv.classList.add("taskListdiv");
-  taskListDiv.style.display = "flex";
-  taskListDiv.appendChild(li);
-  taskListDiv.appendChild(taskEditBtn);
-  taskListDiv.appendChild(taskDoneBtn);
-  ul.appendChild(taskListDiv);
-  taskDiv.appendChild(ul);
-  li.insertAdjacentElement("afterend", taskEditBtn);
-  li.insertAdjacentElement("afterend", taskDoneBtn);
+  if (task !== "") {
+    let li = document.createElement("li");
+    li.textContent = task;
+    li.classList.add("task");
+    let taskDoneBtn = document.createElement("button");
+    let taskEditBtn = document.createElement("button");
+    taskDoneBtn.classList.add("taskListDoneBtn");
+    taskEditBtn.classList.add("taskListEditBtn");
+    taskDoneBtn.textContent = "Done";
+    taskEditBtn.textContent = "Edit";
+    let taskListDiv = document.createElement("div");
+    taskListDiv.classList.add("taskListdiv");
+    taskListDiv.style.display = "flex";
+    taskListDiv.appendChild(li);
+    taskListDiv.appendChild(taskEditBtn);
+    taskListDiv.appendChild(taskDoneBtn);
+    ul.appendChild(taskListDiv);
+    taskDiv.appendChild(ul);
+    li.insertAdjacentElement("afterend", taskEditBtn);
+    li.insertAdjacentElement("afterend", taskDoneBtn);
 
-  ul.style.width = "100%";
-  li.style.textAlign = "start";
-  li.style.padding = "5px";
-  ul.style.padding = "5px";
-  taskDoneBtn.style.padding = "2px";
-  taskEditBtn.style.padding = "2px";
-  taskDoneBtn.style.margin = "2px";
-  taskEditBtn.style.margin = "2px";
+    ul.style.width = "100%";
+    li.style.textAlign = "start";
+    li.style.padding = "5px";
+    ul.style.padding = "5px";
+    taskDoneBtn.style.padding = "2px";
+    taskEditBtn.style.padding = "2px";
+    taskDoneBtn.style.margin = "2px";
+    taskEditBtn.style.margin = "2px";
+    taskDoneBtn.style.height = "25px";
+    taskEditBtn.style.height = "25px";
 
-  taskDoneBtn.addEventListener("click", () => markTodoDone(taskListDiv));
-  taskEditBtn.addEventListener("click", () => editTheTask(taskListDiv));
+    taskDoneBtn.addEventListener("click", () => markTodoDone(taskListDiv));
+    taskEditBtn.addEventListener("click", () => editTheTask(taskListDiv));
+  }
 }
 
 function markTodoDone(item) {
@@ -82,16 +86,23 @@ function markTodoDone(item) {
 }
 
 function editTheTask(itemDiv) {
-  itemDiv.children[2].textContent = "Update";
-  let editTaskInputBox = document.createElement("input");
-  itemDiv.children[0].appendChild(editTaskInputBox);
-  // itemDiv.children[0].textContent = "";
-  itemDiv.children[2].addEventListener("click", function (e) {
-    console.log(e.target.value);
-    let updatedtask = editTaskInputBox.value;
-    console.log(updatedtask);
-    itemDiv.firstChild.textContent = updatedtask;
-    itemDiv.firstChild.style.display = "block";
-    itemDiv.children[2].textContent = "Edit";
-  });
+  console.log("text content = ", itemDiv.children[2].textContent);
+
+  if (itemDiv.children[2].textContent == "Edit") {
+    itemDiv.children[2].textContent = "Update";
+    let editTaskInputBox = document.createElement("input");
+    itemDiv.children[0].appendChild(editTaskInputBox);
+    itemDiv.children[2].addEventListener("click", function (e) {
+      let updatedtask = editTaskInputBox.value;
+      console.log("edit task input box value = ", updatedtask);
+      if (updatedtask !== "") {
+        console.log("target value : ", e);
+        console.log("updated task : ", updatedtask);
+        itemDiv.firstChild.textContent = updatedtask;
+        itemDiv.firstChild.style.display = "block";
+        itemDiv.children[2].textContent = "Edit";
+        editTaskInputBox.value = "";
+      }
+    });
+  }
 }
